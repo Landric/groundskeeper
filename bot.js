@@ -11,7 +11,7 @@ var grammar = tracery.createGrammar({
 	'welcome': "#greeting.capitalize#, #come on in#! #make yourself at home.capitalize#",
 
 	'greeting': [
-		"#hello# @$name$!"
+		"#hello# $name$!"
 	],
 
 	'hello': ["hi there", "hi", "hey", "howdy"],
@@ -54,8 +54,8 @@ client.on('message', message => {
 	//Don't reply to yourself, silly bot
 	if (message.author.bot) return;
 
-	if (message.substring(0, 1) == prefix) {
-		var args = message.substring(1).split(' ');
+	if (message.content.substring(0, 1) == prefix) {
+		var args = message.content.substring(1).split(' ');
 		var cmd = args[0].toLowerCase();
 	    args = args.splice(1);
 
@@ -65,7 +65,7 @@ client.on('message', message => {
 	        break;
 	        case 'nick': changeNick(message, args);
 	        break;
-	        case 'testgreet': message.reply(grammar.flatten('#welcome#').replace('$name$', message.author.id));
+	        case 'testgreet': message.reply(grammar.flatten('#welcome#').replace('$name$', '<@'+message.author.id+'>'));
 	        break;
 	    }
 	}
@@ -73,7 +73,7 @@ client.on('message', message => {
 
 
 client.on('guildMemberAdd', member => {
-	member.guild.channels.get('662340589970522160').send(grammar.flatten('#welcome#').replace('$name$', member.id)); 
+	member.guild.channels.get('662340589970522160').send(grammar.flatten('#welcome#').replace('$name$', '<@'+member.id+'>')); 
 });
 
 
