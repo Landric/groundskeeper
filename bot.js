@@ -8,11 +8,7 @@ var prefix = process.env.PREFIX;
 //grammar, to allow for substituting user args (e.g. "Hello @Gangrel!")
 var grammar = tracery.createGrammar({
 
-	'welcome': "#greeting.capitalize#, #come on in#! #make yourself at home.capitalize#",
-
-	'greeting': [
-		"#hello# $name$!"
-	],
+	'welcome': "#hello.capitalize# $name$! #come on in.capitalize#, #make yourself at home#",
 
 	'hello': ["hi there", "hi", "hey", "howdy"],
 
@@ -38,8 +34,7 @@ grammar.addModifiers(tracery.baseEngModifiers);
 function listCommands(channel){
 	var message = prefix+`help - lists all of the available commands
 `+prefix+`nick <nickname> - change the bot's nickname (admins only)
-`+prefix+`testgreet - test the greeting
-`+prefix+`prefix <prefix> - change the prefix (admins only)`;
+`+prefix+`testgreet - test the greeting`;
 	channel.send(message)
 }
 
@@ -74,8 +69,8 @@ client.on('message', message => {
 	        break;
 	        case 'testgreet': message.channel.send(grammar.flatten('#welcome#').replace('$name$', '<@'+message.author.id+'>'));
 	        break;
-	        case 'prefix': if(isAdmin(message.member)){prefix = args[0]} else {message.reply("Only admins can change the prefix!")};
-	        break;
+	        //case 'prefix': if(isAdmin(message.member)){prefix = args[0]} else {message.reply("Only admins can change the prefix!")};
+	        //break;
 	    }
 	}
 });
