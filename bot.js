@@ -69,7 +69,7 @@ client.on('message', message => {
 
 
 client.on('guildMemberAdd', member => {    
-	member.guild.channels.get('channelID').send(grammar.flatten('#welcome#').replace('$name$', member.nickname)); 
+	member.guild.channels.get('662340589970522160').send(grammar.flatten('#welcome#').replace('$name$', member.nickname)); 
 });
 
 
