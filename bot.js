@@ -41,7 +41,7 @@ var grammar = tracery.createGrammar({
 		"would you like anything to #eat#?",
 		"can I get you anything?",
 		"give me a shout if you need anything!"
-	]
+	],
 
 	'eat': ["eat", "drink"]
 });
