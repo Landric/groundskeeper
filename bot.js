@@ -8,10 +8,10 @@ var prefix = process.env.PREFIX;
 //grammar, to allow for substituting user args (e.g. "Hello @Gangrel!")
 var grammar = tracery.createGrammar({
 
-	'welcome': "#greeting#, #come on in#, #make yourself at home#",
+	'welcome': "#greeting.capitalize#, #come on in#! #make yourself at home#",
 
 	'greeting': [
-		"#hello.capitalise# $name$!"
+		"#hello# @$name$!"
 	],
 
 	'hello': ["hi there", "hi", "hey", "howdy"],
@@ -62,14 +62,17 @@ client.on('message', message => {
 	    	case 'commands':
 	    	case 'help': listCommands(message.channel);
 	        break;
-	        case 'nick': changeNick(message, args)
+	        case 'nick': changeNick(message, args);
+	        break;
+	        case 'testgreet': message.reply(grammar.flatten('#welcome#').replace('$name$', message.author.id));
+	        break;
 	    }
 	}
 });
 
 
-client.on('guildMemberAdd', member => {    
-	member.guild.channels.get('662340589970522160').send(grammar.flatten('#welcome#').replace('$name$', member.nickname)); 
+client.on('guildMemberAdd', member => {
+	member.guild.channels.get('662340589970522160').send(grammar.flatten('#welcome#').replace('$name$', member.id)); 
 });
 
 
