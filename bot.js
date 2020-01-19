@@ -47,6 +47,7 @@ function isAdmin(member){
 function changeNick(message, args){
 	if(isAdmin(message.member)){
 		message.guild.me.setNickname(args[0]);
+		message.channel.send("*"+args[0]+" seems to like their new name*")
 	}
 }
 
