@@ -8,22 +8,42 @@ var prefix = process.env.PREFIX;
 //grammar, to allow for substituting user args (e.g. "Hello @Gangrel!")
 var grammar = tracery.createGrammar({
 
-	'welcome': "#hello.capitalize# $name$! #come on in.capitalize#, #make yourself at home#",
+	'welcome': "#hello.capitalize# $name$! #greeting.capitalize#",
+
+	'greeting': [
+		"#come on in##and# #make yourself at home#!",
+		"#come on in# - #would you like#"
+	],
 
 	'hello': ["hi there", "hi", "hey", "howdy"],
 
 	'come on in': [
 		"come on in",
-		"grab a seat"
+		"grab a seat",
+		"come out of the cold",
+		"take some time to relax"
 	],
+
+	'and': [",", " and"],
 
 	'make yourself at home': [
+		"put your feet up",
 		'make yourself at home',
 		"don't mind #patron#, they don't bite",
-		"there's beer in the fridge, and coffee on the stove"
+		"there's beer in the fridge, and coffee on the stove",
+		"let me know if there's anything you need",
+		"kick back and relax"
 	],
 
-	'patron': ["Gangrel", "Grin", "Rhet", "Mag", "Sunday"]
+	'patron': ["Gangrel", "Grin", "Rhet", "Mag", "Sunday"],
+
+	'would you like': [
+		"would you like anything to #eat#?",
+		"can I get you anything?",
+		"give me a shout if you need anything!"
+	]
+
+	'eat': ["eat", "drink"]
 });
 
 grammar.addModifiers(tracery.baseEngModifiers); 
