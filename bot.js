@@ -6,7 +6,7 @@ var prefix = process.env.PREFIX;
 
 //Grammar uses custom markup for some values (e.g. "$name$") rather than standard Tracery
 //grammar, to allow for substituting user args (e.g. "Hello @Gangrel!")
-var welcomeGrammar = tracery.createGrammar({
+var grammar = tracery.createGrammar({
 
 	'welcome': "#greeting#, #come on in#, #make yourself at home#",
 
@@ -69,7 +69,7 @@ client.on('message', message => {
 
 
 client.on('guildMemberAdd', member => {    
-	member.guild.channels.get('channelID').send(welcomeGrammar.flatten('#welcome#').replace('$name$', member.nickname)); 
+	member.guild.channels.get('channelID').send(grammar.flatten('#welcome#').replace('$name$', member.nickname)); 
 });
 
 
