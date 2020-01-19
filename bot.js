@@ -36,10 +36,10 @@ grammar.addModifiers(tracery.baseEngModifiers);
 
 
 function listCommands(channel){
-	var message = prefix+`help - lists all of the eavailable commands
-	`+prefix+`nick <nickname> - change the bot's nickname (admins only)
-	`+prefix+`testgreet - test the greeting
-	`+prefix+`prefix <prefix> - change the prefix (admins only)`;
+	var message = prefix+`help - lists all of the available commands
+`+prefix+`nick <nickname> - change the bot's nickname (admins only)
+`+prefix+`testgreet - test the greeting
+`+prefix+`prefix <prefix> - change the prefix (admins only)`;
 	channel.send(message)
 }
 
