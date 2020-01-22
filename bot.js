@@ -40,17 +40,40 @@ var grammar = tracery.createGrammar({
 	'would you like': [
 		"would you like anything to #eat#?",
 		"can I get you anything?",
-		"give me a shout if you need anything!"
+		"give me a shout if you need anything!",
+		"need anything?"
 	],
 
 	'eat': ["eat", "drink"],
 
 	"reaction":[
-		"*$me$ throws up fingerguns and smiles*",
-		"*$me$ looks up* #hm.capitalize#?",
-		"*$me$ grins* #hello.capitalize#",
-		"*$me$ doesn't look up, too busy making waffles*"
+		"#react#",
+		"#react#",
+		"#react#",
+		"#no-react#",
 	],
+
+	"react":[
+		"#action#",
+		"#action# #response#"
+	],
+
+	"action": [
+		"*$me$ throws up fingerguns and smiles*",
+		"*$me$ looks up*",
+		"*$me$ grins*"
+	],
+
+	"response": [
+		"#hm.capitalize#?",
+		"#hello.capitalize#",
+		"#would you like#"
+	]
+
+	"no-react": [
+		"*$me$ doesn't look up, too busy making waffles*",
+		"*$me$ hums, walking around in the back*"
+	]
 
 	"hm": ["hm", "eh", "what"]
 });
