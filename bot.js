@@ -141,7 +141,7 @@ client.on('message', message => {
 	        break;
 	        case 'testgreet': message.channel.send(grammar.flatten('#welcome#').replace('$name$', '<@'+message.author.id+'>'));
 	        break;
-	        case 'status':  if(args.length > 0){ if(isAdmin(message.member)){changeStatus(args[0])} else {message.reply("Only admins can change status!")}} else{message.reply("Current status: "+status)};
+	        case 'status':  if(args.length > 0){ if(isAdmin(message.member)){changeStatus(message, args[0])} else {message.reply("Only admins can change status!")}} else{message.reply("Current status: "+status)};
 	        break;
 	        //case 'prefix': if(isAdmin(message.member)){prefix = args[0]} else {message.reply("Only admins can change the prefix!")};
 	        //break;
