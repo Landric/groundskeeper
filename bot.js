@@ -108,7 +108,7 @@ client.on('message', message => {
 
 	//Listen for your name
 	if(message.guild.me.nickname && message.contents.toLowerCase().includes(message.guild.me.nickname.toLowerCase())){
-		message.channel.send(grammar.flatten('#reaction#').replace('$me$', message.guild.me.nickname)
+		message.channel.send(grammar.flatten('#reaction#').replace('$me$', message.guild.me.nickname))
 	}
 });
 
