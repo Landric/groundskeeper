@@ -110,10 +110,14 @@ function changeNick(message, args){
 	}
 }
 
-function changeStatus(newStatus){
+function changeStatus(message, newStatus){
 	var validModes = ["normal", "quiet", "silent"];
-	if(validModes.includes(newStatus)){
-		status = newStatus;
+	if(validModes.includes(newStatus.toLowerCase())){
+		status = newStatus.toLowerCase();
+		message.reply("Successfully changed status to "+status);
+	}
+	else{
+		message.reply("Could not change status - make sure it's one of the following: "+validModes.join("/"));
 	}
 }
 
