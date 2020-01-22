@@ -4,6 +4,8 @@ const tracery = require('tracery-grammar');
 
 var prefix = process.env.PREFIX;
 
+var status = "normal";
+
 //Grammar uses custom markup for some values (e.g. "$name$") rather than standard Tracery
 //grammar, to allow for substituting user args (e.g. "Hello @Gangrel!")
 var grammar = tracery.createGrammar({
@@ -84,9 +86,14 @@ grammar.addModifiers(tracery.baseEngModifiers);
 
 
 function listCommands(channel){
+	var name = Client.user.nickname || "the bot";
 	var message = prefix+`help - lists all of the available commands
-`+prefix+`nick <nickname> - change the bot's nickname (admins only)
-`+prefix+`testgreet - test the greeting`;
+`+prefix+`nick <nickname> - change `+name+`'s nickname (admin only)
+`+prefix+`status - shows `+name+`'s current status
+`+prefix+`status <normal/quiet/silent> - changes `+name+`'s current status (admin only)
+	normal: `+name+` welcomes people to the server, and responds to their name in chat
+	quiet: `+name+` will no longer respond to their name in chat
+	silent: `+name+` will not welcome people or respond to their name (but will still listen for, and respond to, commands)`;
 	channel.send(message)
 }
 
@@ -100,6 +107,13 @@ function changeNick(message, args){
 	if(isAdmin(message.member)){
 		message.guild.me.setNickname(args[0]);
 		message.channel.send("*"+args[0]+" seems to like their new name*")
+	}
+}
+
+function changeStatus(newStatus){
+	var validModes = ["normal", "quiet", "silent"];
+	if(validModes.includes(newStatus)){
+		status = newStatus;
 	}
 }
 
@@ -123,21 +137,25 @@ client.on('message', message => {
 	        break;
 	        case 'testgreet': message.channel.send(grammar.flatten('#welcome#').replace('$name$', '<@'+message.author.id+'>'));
 	        break;
+	        case 'status':  if(args.length > 0){ if(isAdmin(message.member)){changeStatus(args[0])} else {message.reply("Only admins can change status!")}} else{message.reply("Current status: "+status)};
+	        break;
 	        //case 'prefix': if(isAdmin(message.member)){prefix = args[0]} else {message.reply("Only admins can change the prefix!")};
 	        //break;
 	    }
 	    return
 	}
 
-	//Listen for your name
-	if(message.guild.me.nickname && message.content.toLowerCase().includes(message.guild.me.nickname.toLowerCase())){
+	//Listen for your name, if not on "quiet" mode
+	if(status == "normal" && message.guild.me.nickname && message.content.toLowerCase().includes(message.guild.me.nickname.toLowerCase())){
 		message.channel.send(grammar.flatten('#reaction#').replace('$me$', message.guild.me.nickname))
 	}
 });
 
 
 client.on('guildMemberAdd', member => {
-	member.guild.channels.get('662340589970522160').send(grammar.flatten('#welcome#').replace('$name$', '<@'+member.id+'>')); 
+	if(status != "silent"){
+		member.guild.channels.get('662340589970522160').send(grammar.flatten('#welcome#').replace('$name$', '<@'+member.id+'>')); 	
+	}
 });
 
 
