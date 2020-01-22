@@ -69,7 +69,7 @@ var grammar = tracery.createGrammar({
 	"response": [
 		"#hm.capitalize#?",
 		"#hello.capitalize#",
-		"#would you like#"
+		"#would you like.capitalize#"
 	],
 
 	"no-react": [
