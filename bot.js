@@ -75,7 +75,7 @@ var grammar = tracery.createGrammar({
 		"*$me$ hums, walking around in the back*"
 	],
 
-	"hm": ["hm", "eh", "what"]
+	"hm": ["hm", "eh", "what", "huh"]
 });
 
 grammar.addModifiers(tracery.baseEngModifiers); 
