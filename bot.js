@@ -73,7 +73,7 @@ var grammar = tracery.createGrammar({
 	"no-react": [
 		"*$me$ doesn't look up, too busy making waffles*",
 		"*$me$ hums, walking around in the back*"
-	]
+	],
 
 	"hm": ["hm", "eh", "what"]
 });
