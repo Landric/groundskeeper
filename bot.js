@@ -15,7 +15,7 @@ var grammar = tracery.createGrammar({
 		"#come on in# - #would you like#"
 	],
 
-	'hello': ["hi there", "hi", "hey", "howdy"],
+	'hello': ["hi there", "hi", "hey", "howdy", "'eeeeyy"],
 
 	'come on in': [
 		"come on in",
@@ -48,7 +48,7 @@ var grammar = tracery.createGrammar({
 	"reaction":[
 		"*$me$ throws up fingerguns and smiles*",
 		"*$me$ looks up* #hm.capitalize#?",
-		"*$me$ grins* 'eeeeeeeyy",
+		"*$me$ grins* #hello.capitalize#",
 		"*$me$ doesn't look up, too busy making waffles*"
 	],
 
