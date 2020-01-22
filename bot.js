@@ -86,7 +86,7 @@ grammar.addModifiers(tracery.baseEngModifiers);
 
 
 function listCommands(channel){
-	var name = Client.user.nickname || "the bot";
+	var name = client.user.nickname || "the bot";
 	var message = prefix+`help - lists all of the available commands
 `+prefix+`nick <nickname> - change `+name+`'s nickname (admin only)
 `+prefix+`status - shows `+name+`'s current status
