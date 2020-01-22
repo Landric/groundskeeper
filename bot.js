@@ -43,7 +43,16 @@ var grammar = tracery.createGrammar({
 		"give me a shout if you need anything!"
 	],
 
-	'eat': ["eat", "drink"]
+	'eat': ["eat", "drink"],
+
+	"reaction":[
+		"*$me$ throws up fingerguns and smiles*",
+		"*$me$ looks up* #hm.capitalize#?",
+		"*$me$ grins* 'eeeeeeeyy",
+		"*$me$ doesn't look up, too busy making waffles*"
+	],
+
+	"hm": ["hm", "eh", "what"]
 });
 
 grammar.addModifiers(tracery.baseEngModifiers); 
@@ -77,6 +86,7 @@ client.on('message', message => {
 	//Don't reply to yourself, silly bot
 	if (message.author.bot) return;
 
+	//Listen for commands
 	if (message.content.substring(0, 1) == prefix) {
 		var args = message.content.substring(1).split(' ');
 		var cmd = args[0].toLowerCase();
@@ -93,6 +103,12 @@ client.on('message', message => {
 	        //case 'prefix': if(isAdmin(message.member)){prefix = args[0]} else {message.reply("Only admins can change the prefix!")};
 	        //break;
 	    }
+	    return
+	}
+
+	//Listen for your name
+	if(message.guild.me.nickname && message.contents.toLowerCase().includes(message.guild.me.nickname.toLowerCase())){
+		message.channel.send(grammar.flatten('#reaction#').replace('$me$', message.guild.me.nickname)
 	}
 });
 
