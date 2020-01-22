@@ -85,8 +85,8 @@ grammar.addModifiers(tracery.baseEngModifiers);
 
 
 
-function listCommands(channel){
-	var name = client.user.nickname || "the bot";
+function listCommands(message, channel){
+	var name = message.guild.me.nickname || "the bot";
 	var message = prefix+`help - lists all of the available commands
 `+prefix+`nick <nickname> - change `+name+`'s nickname (admin only)
 `+prefix+`status - shows `+name+`'s current status
@@ -135,7 +135,7 @@ client.on('message', message => {
 
 	    switch(cmd) {
 	    	case 'commands':
-	    	case 'help': listCommands(message.channel);
+	    	case 'help': listCommands(message, message.channel);
 	        break;
 	        case 'nick': changeNick(message, args);
 	        break;
