@@ -158,7 +158,11 @@ client.on('message', message => {
 
 client.on('guildMemberAdd', member => {
 	if(status != "silent"){
-		member.guild.channels.get('662340589970522160').send(grammar.flatten('#welcome#').replace('$name$', '<@'+member.id+'>')); 	
+		let message = `Welcome to Horror & Hessite Mews, a server for RP events, adventures, and everyday life in RavenBlack City. Feel free to look around! If you've got any questions, ask either Mag, Gangrel, or Xave. Don't forget to assign yourself some #roles!
+
+Check it out: A new RP event is coming in March. Keep an eye out.`
+		member.guild.channels.get('662340589970522160').send(message);
+		//member.guild.channels.get('662340589970522160').send(grammar.flatten('#welcome#').replace('$name$', '<@'+member.id+'>')); 	
 	}
 });
 
