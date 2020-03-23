@@ -158,9 +158,7 @@ client.on('message', message => {
 
 client.on('guildMemberAdd', member => {
 	if(status != "silent"){
-		let message = `Hi $name$! Welcome to Horror & Hessite Mews, a server for RP events, adventures, and everyday life in RavenBlack City. Feel free to look around! If you've got any questions, ask either Mag, Gangrel, or Xave. Don't forget to assign yourself some #roles!
-
-Check it out: A new RP event is coming in March. Keep an eye out.`
+		let message = `Hi $name$! Welcome to Horror & Hessite Mews, a server for RP events, adventures, and everyday life in RavenBlack City. Feel free to look around! If you've got any questions, ask either Mag, Gangrel, or Xave. Don't forget to assign yourself some #roles!`
 		member.guild.channels.get('662340589970522160').send(message.replace('$name$', '<@'+member.id+'>'));
 		//member.guild.channels.get('662340589970522160').send(grammar.flatten('#welcome#').replace('$name$', '<@'+member.id+'>')); 	
 	}
